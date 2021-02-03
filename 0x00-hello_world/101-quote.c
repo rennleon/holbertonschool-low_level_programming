@@ -1,5 +1,6 @@
-#include <stdlib.h>
 #include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
 /**
  * main - Entry point
  *
@@ -9,6 +10,6 @@ int main(void)
 {
 	char m[] = "and that piece of art is useful\" - Dora Korpar, 2015-10-19\n";
 
-	fwrite(m, 60, 1, stderr);
+	write(2, m, 60);
 	exit(EXIT_FAILURE);
 }
