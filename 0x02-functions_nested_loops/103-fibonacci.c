@@ -7,10 +7,10 @@
  */
 int main(void)
 {
-	int i;
-	int n1, n2;
-	int term;
-	int sum;
+	long i;
+	long n1, n2;
+	long term;
+	long long sum;
 
 	n1 = 0;
 	n2 = 1;
@@ -29,7 +29,7 @@ int main(void)
 		n2 = term;
 	}
 
-	printf("%d\n", sum);
+	printf("%lld\n", sum);
 
 	return (0);
 }
