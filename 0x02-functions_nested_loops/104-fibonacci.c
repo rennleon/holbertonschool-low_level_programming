@@ -18,13 +18,13 @@ int main(void)
 	{
 		sum = n1 + n2;
 
-		printf("%.0lf, ", sum);
+		printf("%.0f, ", sum);
 
 		n1 = n2;
 		n2 = sum;
 	}
 
-	printf("%.0lf\n", (double)(n1 + n2));
+	printf("%.0f\n", (n1 + n2));
 
 	return (0);
 }
