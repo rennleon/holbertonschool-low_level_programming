@@ -8,11 +8,15 @@
  */
 int main(void)
 {
-	int i;
-	char str[10] = "Holberton";
-
-	for (i = 0; i < 10; i++)
-		_putchar(str[i]);
+	_putchar('H');
+	_putchar('o');
+	_putchar('l');
+	_putchar('b');
+	_putchar('e');
+	_putchar('r');
+	_putchar('t');
+	_putchar('o');
+	_putchar('n');
 
 	_putchar('\n');
 
