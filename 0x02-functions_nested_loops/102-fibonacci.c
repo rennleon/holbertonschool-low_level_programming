@@ -1,11 +1,11 @@
 #include <stdio.h>
 
 /**
- * main - Entry polong
+ * main - check the code for Holberton School students.
  *
  * Return: Always 0.
  */
-long main(void)
+int main(void)
 {
 	long i;
 	unsigned long n1, n2;
