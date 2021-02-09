@@ -7,10 +7,9 @@
  */
 int main(void)
 {
-	long i;
-	long n1, n2;
-	long term;
-	long long sum;
+	unsigned long n1, n2;
+	unsigned long term;
+	unsigned long sum;
 
 	n1 = 0;
 	n2 = 1;
@@ -29,7 +28,7 @@ int main(void)
 		n2 = term;
 	}
 
-	printf("%lld\n", sum);
+	printf("%lu\n", sum);
 
 	return (0);
 }
