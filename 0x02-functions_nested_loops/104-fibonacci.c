@@ -8,8 +8,8 @@
 int main(void)
 {
 	int i;
-	unsigned long n1, n2;
-	unsigned long sum;
+	double n1, n2;
+	double sum;
 
 	n1 = 0;
 	n2 = 1;
@@ -18,13 +18,13 @@ int main(void)
 	{
 		sum = n1 + n2;
 
-		printf("%lu, ", sum);
+		printf("%.0lf, ", sum);
 
 		n1 = n2;
 		n2 = sum;
 	}
 
-	printf("%lu\n", (n1 + n2));
+	printf("%.0lf\n", (double)(n1 + n2));
 
 	return (0);
 }
