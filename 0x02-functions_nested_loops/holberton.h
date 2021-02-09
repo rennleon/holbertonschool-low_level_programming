@@ -23,3 +23,6 @@ int add(int, int);
 void print_to_98(int n);
 
 void print_times_table(int n);
+void print_one_digit(int res, int j);
+void print_two_digits(int res);
+void print_three_digits(int res);
