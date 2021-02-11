@@ -43,7 +43,7 @@ void handle_n_less(int n)
 		n *= -1;
 		n_is_negative = 1;
 	}
-	
+
 	rev = reverse_punit(n);
 
 	if (n_is_negative)
@@ -73,7 +73,7 @@ void handle_n_great(int n, int divisor)
 
 	/* Add divisor to half2 to avoid loosing middle 0's in n */
 	half2 += divisor;
-	
+
 	rev1 = reverse_punit(half1);
 	rev2 = reverse_punit(half2);
 
@@ -104,7 +104,7 @@ int reverse_punit(int n)
 		n = n / 10;
 	} while (n > 0);
 
-	return rev;
+	return (rev);
 }
 
 /**
