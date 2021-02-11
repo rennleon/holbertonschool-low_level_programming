@@ -13,28 +13,24 @@ void print_number(int n)
 
 	rev = 1;
 	is_negative = 0;
-	
+
 	if (n < 0)
 	{
 		n *= -1;
 		is_negative = 1;
 	}
 
-	do
-	{
+	do {
 		rev *= 10;
 		rev += n % 10;
 		n = n / 10;
-	} 
-	while (n > 0);
+	} while (n > 0);
 
 	if (is_negative)
 		_putchar('-');
 
-	do
-	{
+	do {
 		_putchar('0' + (rev % 10));
 		rev /= 10;
-	}
-	while (rev >= 10);
+	} while (rev >= 10);
 }
