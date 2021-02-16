@@ -1,4 +1,3 @@
-#include <string.h>
 #include "holberton.h"
 
 /**
@@ -9,5 +8,14 @@
  */
 int _strlen(char *s)
 {
-	return (strlen(s));
+	int len;
+
+	len = 0;
+
+	while (*(s + len) != '\0')
+	{
+		len++;
+	}
+
+	return (len);
 }
