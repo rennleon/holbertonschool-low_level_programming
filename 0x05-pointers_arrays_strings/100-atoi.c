@@ -13,7 +13,7 @@ int is_alpha(char c);
 int _atoi(char *s)
 {
 	int sign;
-	int value;
+	double value;
 	int digit_passed;
 
 	sign = 1;
