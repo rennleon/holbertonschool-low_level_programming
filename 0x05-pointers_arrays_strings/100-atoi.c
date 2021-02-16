@@ -6,6 +6,9 @@ int is_alpha(char c);
 /**
  * _atoi - Converts a string to an integer
  * @s: String to be converted to integer
+ *
+ * Return: An integer obtained from the string or 0 if no digit
+ * was found
  */
 int _atoi(char *s)
 {
