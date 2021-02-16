@@ -1,4 +1,3 @@
-#include <string.h>
 #include "holberton.h"
 
 /**
@@ -12,13 +11,17 @@ void rev_string(char *s)
 	int middle;
 	char aux;
 
-	len = strlen(s);
+	len = 0;
+
+	while (*(s + len) != '\0')
+		len++;
+
 	middle = len / 2;
 
-	for(i = 0; i < middle; i++)
+	for (i = 0; i < middle; i++)
 	{
 		aux = s[i];
-		s[i] = s[len-i-1];
-		s[len-i-1] = aux;
+		s[i] = s[len - i - 1];
+		s[len - i - 1] = aux;
 	}
 }
