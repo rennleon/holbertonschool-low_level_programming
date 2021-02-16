@@ -1,4 +1,3 @@
-#include <string.h>
 #include "holberton.h"
 
 /**
@@ -10,5 +9,18 @@
  */
 char *_strcpy(char *dest, char *src)
 {
-	return strcpy(dest, src);
+	char *mem_address;
+
+	mem_address = dest;
+
+	while (*src != '\0')
+	{
+		*mem_address = *src;
+		mem_address++;
+		src++;
+	}
+
+	*mem_address = '\0';
+
+	return (dest);
 }
