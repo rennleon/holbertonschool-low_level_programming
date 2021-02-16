@@ -22,7 +22,7 @@ int _atoi(char *s)
 
 	while (*s != '\0')
 	{
-		if (is_digit(*s))
+		if (*s >= '0' && *s <= '9')
 		{
 			value *= 10;
 			/* Get int value instead of ascii code */
@@ -38,26 +38,4 @@ int _atoi(char *s)
 	}
 
 	return (value * sign);
-}
-
-/**
- * is_digit - Evaluates if a char is a digit
- * @c: char to be evaluated
- *
- * Return: 1 if c is digit, 0 otherwise
- */
-int is_digit(char c)
-{
-	return (c >= '0' && c <= '9');
-}
-
-/**
- * is_alpha - Evaluates if a char is a letter
- * @c: char to be evaluated
- *
- * Return: 1 if c is a letter, 0 otherwise
- */
-int is_alpha(char c)
-{
-	return ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'));
 }
