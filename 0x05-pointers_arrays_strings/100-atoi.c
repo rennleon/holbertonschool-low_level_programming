@@ -14,9 +14,11 @@ int _atoi(char *s)
 {
 	int sign;
 	int value;
+	int digit_passed;
 
 	sign = 1;
 	value = 0;
+	digit_passed = 0;
 
 	while (*s != '\0')
 	{
@@ -25,8 +27,9 @@ int _atoi(char *s)
 			value *= 10;
 			/* Get int value instead of ascii code */
 			value += (*s) - '0';
+			digit_passed = 1;
 		}
-		else if (value > 0)
+		else if (digit_passed == 1)
 			return (value * sign);
 		else if (*s == '-')
 			sign *= -1;
