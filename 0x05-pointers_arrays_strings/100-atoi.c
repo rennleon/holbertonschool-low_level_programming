@@ -26,10 +26,10 @@ int _atoi(char *s)
 			/* Get int value instead of ascii code */
 			value += (*s) - '0';
 		}
+		else if (value > 0)
+			return (value * sign);
 		else if (*s == '-')
 			sign *= -1;
-		else if (value > 0 && is_alpha(*s))
-			return (value * sign);
 
 		s++;
 	}
