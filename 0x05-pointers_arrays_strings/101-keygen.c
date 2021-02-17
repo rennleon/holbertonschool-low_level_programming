@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 
 void substract_key(char key[], int len, int checksum);
 
@@ -16,6 +17,8 @@ int main(void)
 	int i;
 	int r_val;
 	int checksum;
+
+	srand ( time(NULL) );
 
 	i = 0;
 	r_val = rand();
