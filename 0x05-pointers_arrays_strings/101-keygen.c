@@ -36,7 +36,7 @@ int main(void)
 
 	substract_key(key, i, checksum);
 
-	printf("%s", key);
+	printf("%s\n", key);
 
 	return (0);
 }
