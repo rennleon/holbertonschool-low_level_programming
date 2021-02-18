@@ -1,11 +1,10 @@
 #include "holberton.h"
 
 /**
- * _strcmp - Compares two strings
- * @s1: First String
- * @s2: Second string
+ * reverse_array - Compares two strings
+ * @a: Array of integers
+ * @n: Length of the array
  *
- * Return: Integer greater than, equal, or less than zero
  */
 void reverse_array(int *a, int n)
 {
