@@ -1,5 +1,3 @@
-#include "holberton.h"
-
 /**
  * _strcat - Appends src to dest and returns a pointer to dest
  * @dest: String to be extended
