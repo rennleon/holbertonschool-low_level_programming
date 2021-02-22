@@ -1,7 +1,7 @@
 #include "holberton.h"
 
 /**
- * _print_chessboard - Prints a chessboard
+ * print_chessboard - Prints a chessboard
  * @a: Pointer to the first element of board
  */
 void print_chessboard(char (*a)[8])
