@@ -27,19 +27,19 @@ unsigned int _strspn(char *s, char *accept)
 		s++;
 	}
 
-	return max_count;
+	return (max_count);
 }
 
 /**
  * char_accepted - Evaluated if a char is in the set of accepted chars
- * @accepted: Sset of accepted chars
+ * @accept: Sset of accepted chars
  * @c: Char to be evaluated
  *
  * Return: 1 if c is in accepted, 0 otherwise
  */
 int char_accepted(char *accept, char c)
 {
-	while(*accept != '\0')
+	while (*accept != '\0')
 	{
 		if (*accept == c)
 			return (1);
