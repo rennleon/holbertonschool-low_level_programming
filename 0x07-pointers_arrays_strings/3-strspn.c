@@ -12,7 +12,6 @@ int char_accepted(char *, char);
 unsigned int _strspn(char *s, char *accept)
 {
 	unsigned int count = 0;
-	unsigned int max_count = 0;
 
 	while (*s != '\0')
 	{
@@ -20,14 +19,13 @@ unsigned int _strspn(char *s, char *accept)
 			count++;
 		else
 		{
-			if (count > max_count)
-				max_count = count;
-			count = 0;
+			if (count > 0)
+				return (count);
 		}
 		s++;
 	}
 
-	return (max_count);
+	return (count);
 }
 
 /**
