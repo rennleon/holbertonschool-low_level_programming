@@ -39,7 +39,6 @@ int wildcmp_rec(char *s1, char *s2, int special_char_flag)
 			char *pss1 = get_p(pes1, pesubs2, pes1, s1, s2 + 1, pesubs2);
 
 			return (
-					wildcmp_rec(s1, s2 + 1, 0) ||
 					wildcmp_rec(s1, s2 + 1, 1) ||
 					wildcmp_rec(pss1, s2 + 1, 1));
 		}
