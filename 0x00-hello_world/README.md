@@ -30,13 +30,13 @@ Which command can be used to compile a C source file?
 Which of the following are both valid comment syntaxes in ANSI C, and Betty-compliant?
 - [ ] ``/* Comment */``
 - [ ] ``// Comment``
-- [ ]
+- [ ] ex.
 ```
 /*
 Comment
 */
 ```
-- [x] 
+- [x] ex.
 ```
 /*
  * Comment
