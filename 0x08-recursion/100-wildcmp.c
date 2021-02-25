@@ -1,6 +1,8 @@
 #include "holberton.h"
+#include <stdio.h>
 
-int wildcmp_rec(char *, char *, int);
+int wildcmp_rec1(char *, char *, int);
+int wildcmp_rec2(char *, char *, int);
 char *get_substr(char *);
 char *get_end(char *);
 char *get_p(char *, char *, char *, char *, char *, char *);
@@ -14,23 +16,58 @@ char *get_p(char *, char *, char *, char *, char *, char *);
  */
 int wildcmp(char *s1, char *s2)
 {
-	return (wildcmp_rec(s1, s2, 0));
+	return (wildcmp_rec1(s1, s2, 0) || wildcmp_rec2(s1, s2, 0));
 }
 
 /**
- * wildcmp_rec - Compares if two strings are equals
+ * wildcmp_rec1 - Compares if two strings are equals
  * @s1: First string
  * @s2: Special string with special * char
  * @special_char_flag: Int that tells if special char '*' has been passed
  *
  * Return: 1 if s1==s2, 0 otherwise
  */
-int wildcmp_rec(char *s1, char *s2, int special_char_flag)
+int wildcmp_rec1(char *s1, char *s2, int special_char_flag)
 {
 	if (*s1 != '\0' && *s2 != '\0')
 	{
 		if (*s1 == *s2)
-			return (wildcmp_rec(s1 + 1, s2 + 1, 0));
+			return (wildcmp_rec1(s1 + 1, s2 + 1, 0));
+
+		if (*s2 == '*')
+			return (wildcmp_rec1(s1, s2 + 1, 1));
+
+		if (special_char_flag == 1)
+			return (wildcmp_rec1(s1 + 1, s2, 1));
+	}
+
+
+	if (*s1 != '\0' && special_char_flag == 1)
+		return (1);
+
+	if (*s1 == '\0' && *s2 == '*')
+		return (wildcmp_rec1(s1, s2 + 1, 1));
+
+	if (*s1 == '\0' && *s2 == '\0')
+		return (1);
+
+	return (0);
+}
+
+/**
+ * wildcmp_rec2 - Compares if two strings are equals
+ * @s1: First string
+ * @s2: Special string with special * char
+ * @special_char_flag: Int that tells if special char '*' has been passed
+ *
+ * Return: 1 if s1==s2, 0 otherwise
+ */
+int wildcmp_rec2(char *s1, char *s2, int special_char_flag)
+{
+	if (*s1 != '\0' && *s2 != '\0')
+	{
+		if (*s1 == *s2)
+			return (wildcmp_rec2(s1 + 1, s2 + 1, 0));
 
 		if (*s2 == '*')
 		{
@@ -38,20 +75,18 @@ int wildcmp_rec(char *s1, char *s2, int special_char_flag)
 			char *pes1 = get_end(s1);
 			char *pss1 = get_p(pes1, pesubs2, pes1, s1, s2 + 1, pesubs2);
 
-			return (
-					wildcmp_rec(s1, s2 + 1, 1) ||
-					wildcmp_rec(pss1, s2 + 1, 1));
+			return (wildcmp_rec2(pss1, s2 + 1, 1));
 		}
 
 		if (special_char_flag == 1)
-			return (wildcmp_rec(s1 + 1, s2, 1));
+			return (wildcmp_rec2(s1 + 1, s2, 1));
 	}
 
 	if (*s1 != '\0' && special_char_flag == 1)
 		return (1);
 
 	if (*s1 == '\0' && *s2 == '*')
-		return (wildcmp_rec(s1, s2 + 1, 1));
+		return (wildcmp_rec2(s1, s2 + 1, 1));
 
 	if (*s1 == '\0' && *s2 == '\0')
 		return (1);
