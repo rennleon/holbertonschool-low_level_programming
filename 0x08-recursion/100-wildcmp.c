@@ -16,6 +16,34 @@ char *get_p(char *, char *, char *, char *, char *, char *);
  */
 int wildcmp(char *s1, char *s2)
 {
+	if (*s1 == '\0' && *s2 == '\0')
+		return (1);
+
+	if (*s1 == '\0' && *s2 == '*')
+		return (wildcmp(s1, s2 + 1));
+
+	if (*s1 == *s2)
+		return (wildcmp(s1 + 1, s2 + 1));
+
+	/* if '*' means null, s2 just goes to the next position */
+	/* if '*' means replacement of any char, s1 goes to next position */
+	/* Doing || (or) to both cases, combines all posible ways to find equality */
+	/* if any solutions gives 1, then the output will be 1 */
+	if (*s2 == '*')
+		return (wildcmp(s1, s2 + 1) || wildcmp(s1 + 1, s2));
+
+	return (0);
+}
+
+/**
+ * wildcmp_old - Compares if two strings are equals
+ * @s1: First string
+ * @s2: Second string
+ *
+ * Return: 1 if s1==s2, 0 otherwise
+ */
+int wildcmp_old(char *s1, char *s2)
+{
 	return (wildcmp_rec1(s1, s2, 0) || wildcmp_rec2(s1, s2, 0));
 }
 
