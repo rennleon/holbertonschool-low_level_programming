@@ -27,7 +27,7 @@ int main(int argc, char *argv[])
 	if (num <= 0)
 		printf("0\n");
 	else
-		printf("%d\n", min_coins_changerec(num, coins, 0));
+		printf("%d\n", min_coins_change(num, coins));
 
 	return (0);
 }
