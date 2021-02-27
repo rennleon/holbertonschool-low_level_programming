@@ -31,6 +31,12 @@ int main(int argc, char *argv[])
 	return (0);
 }
 
+/**
+ * is_number - Verifies if a string is composed only by numbers
+ * @s: String to be verified
+ *
+ * Return: 1 if string contains only numbers, 0 otherwise
+ */
 int is_number(char *s)
 {
 	while (*s != '\0')
