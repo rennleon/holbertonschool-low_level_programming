@@ -65,7 +65,7 @@ int min_coins_change(int num, int coins[])
  * min_coins_changerec - Calculates the minimum number of coins to give change
  * @n: Number to change into coins
  * @coins: Array of number with coin values
- * @coins_len: Length of the coins array
+ * @index: Current index of coin
  *
  * Return: Minimum value of coin change
  */
@@ -79,6 +79,6 @@ int min_coins_changerec(int n, int coins[], int index)
 
 	if (div_coins > 0)
 		return (div_coins + min_coins_changerec(residual, coins, index + 1));
-	
+
 	return (min_coins_changerec(n, coins, index + 1));
 }
