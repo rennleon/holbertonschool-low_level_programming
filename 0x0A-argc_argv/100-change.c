@@ -2,7 +2,7 @@
 #include <stdlib.h>
 
 int min_coins_change(int, int[]);
-int min_coins_changerec(int, int[], int, int, int);
+int min_coins_changerec(int, int[], int);
 
 /**
  * main - Entry point
@@ -27,7 +27,7 @@ int main(int argc, char *argv[])
 	if (num <= 0)
 		printf("0\n");
 	else
-		printf("%d\n", min_coins_change(num, coins));
+		printf("%d\n", min_coins_changerec(num, coins, 0));
 
 	return (0);
 }
@@ -66,24 +66,19 @@ int min_coins_change(int num, int coins[])
  * @n: Number to change into coins
  * @coins: Array of number with coin values
  * @coins_len: Length of the coins array
- * @index: Index of the current coin that is been evaluated
- * @sum: Sum of the coin values that the function is considering as solution
  *
  * Return: Minimum value of coin change
  */
-int min_coins_changerec(int n, int coins[], int coins_len, int index, int sum)
+int min_coins_changerec(int n, int coins[], int index)
 {
-	int curr_sum = sum + coins[index];
+	int div_coins = n / coins[index];
+	int residual = n % coins[index];
 
-	if (index >= coins_len)
+	if (n <= 0)
 		return (0);
 
-	if (curr_sum < n)
-		return (1 + min_coins_changerec(n, coins, coins_len, index, curr_sum));
-
-	if (curr_sum > n)
-		return (min_coins_changerec(n, coins, coins_len, index + 1, sum));
-
-	/* curr_sum == num */
-	return (1);
+	if (div_coins > 0)
+		return (div_coins + min_coins_changerec(residual, coins, index + 1));
+	
+	return (min_coins_changerec(n, coins, index + 1));
 }
