@@ -49,11 +49,11 @@ int min_coins_change(int num, int coins[], int coins_len, int index, int sum)
 		return (0);
 
 	if (curr_sum < num)
-		return 1 + (min_coins_change(num, coins, coins_len, index, curr_sum));
+		return (1 + min_coins_change(num, coins, coins_len, index, curr_sum));
 
 	if (curr_sum > num)
 		return (min_coins_change(num, coins, coins_len, index + 1, sum));
 
-	/* curr_sum == num */	
+	/* curr_sum == num */
 	return (1);
 }
