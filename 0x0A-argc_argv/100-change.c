@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int min_coins_change(int, int[], int, int, int);
+int min_coins_change(int, int[]);
 
 /**
  * main - Entry point
@@ -26,9 +26,38 @@ int main(int argc, char *argv[])
 	if (num <= 0)
 		printf("0\n");
 	else
-		printf("%d\n", min_coins_change(num, coins, 5, 0, 0));
+		printf("%d\n", min_coins_change(num, coins));
 
 	return (0);
+}
+
+/**
+ * min_coins_change - Calculates the minimum number of coins to give a change
+ * @num: Number to change into coins
+ * @coins: Array of number with coin values
+ *
+ * Return: Minimum value of coin change
+ */
+int min_coins_change(int num, int coins[])
+{
+	int index = 0;
+	int div_coins = 0;
+	int coins_count = 0;
+
+	while (num > 0)
+	{
+		div_coins = num / coins[index];
+
+		if (div_coins > 0)
+		{
+			coins_count += div_coins;
+			num = num % coins[index];
+		}
+		
+		index++;
+	}
+
+	return coins_count;
 }
 
 /**
@@ -41,6 +70,7 @@ int main(int argc, char *argv[])
  *
  * Return: Minimum value of coin change
  */
+/*
 int min_coins_change(int num, int coins[], int coins_len, int index, int sum)
 {
 	int curr_sum = sum + coins[index];
@@ -53,7 +83,8 @@ int min_coins_change(int num, int coins[], int coins_len, int index, int sum)
 
 	if (curr_sum > num)
 		return (min_coins_change(num, coins, coins_len, index + 1, sum));
-
-	/* curr_sum == num */
+		
+	// curr_sum == num
 	return (1);
 }
+*/
