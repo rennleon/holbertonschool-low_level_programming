@@ -7,7 +7,11 @@ This is how you dropdown.
 </details>
 
 <details>
-<summary><a href="0x00-hello_world">[0x00. C - Hello, World](0x00-hello_world)</a></summary>
+<summary>
+<h2>
+<a href="0x00-hello_world">0x00. C - Hello, World</a>
+</h2>
+</summary>
 <br>
 ### Resources
 **Read or watch:**
