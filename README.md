@@ -6,7 +6,9 @@
 This is how you dropdown.
 </details>
 
-## [0x00. C - Hello, World](0x00-hello_world)
+<details>
+<summary>## [0x00. C - Hello, World](0x00-hello_world)</summary>
+<br>
 ### Resources
 **Read or watch:**
 * [Everything you need to know to start with C.pdf](https://intranet.hbtn.io/rltoken/d6TBbj0HA4EvnmpqvEz68Q) (You do not have to learn everything in there yet, but make sure you read it entirely first)
@@ -98,6 +100,7 @@ You can now type betty <filename> to run the Betty linter!
 
 ### Manual QA Review
 **It is your responsibility to request a review for your blog from a peer before the projects deadline. If no peers have been reviewed, you should request a review from a TA or staff member.**
+</details>
 
 
 ## [0x01. C - Variables, if, else, while](0x01-variables_if_else_while)
