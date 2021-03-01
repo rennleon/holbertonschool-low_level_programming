@@ -1,11 +1,5 @@
 # holbertonschool-low_level_programming
 
-<details>
-<summary>How do I dropdown?</summary>
-<br>
-This is how you dropdown.
-</details>
-
 <h2>
 	<a href="0x00-hello_world">0x00. C - Hello, World</a>
 </h2>
@@ -106,7 +100,12 @@ You can now type betty <filename> to run the Betty linter!
 </details>
 
 
-## [0x01. C - Variables, if, else, while](0x01-variables_if_else_while)
+<h2>
+	<a href="0x01-variables_if_else_while">0x01. C - Variables, if, else, while</a>
+</h2>
+<details>
+<summary>See details</summary>
+
 ### Resources
 **Read or watch:**
 * [Everything you need to know to start with C.pdf](https://intranet.hbtn.io/rltoken/GB1UNodFfec0AXUfmSxsLA) (You do not have to learn everything in there yet, but make sure you read it entirely first and make sure you understand the slides: comments, Data types | Integer types, Declaration, Characters, Arithmetic operators, Variables assignments, Comparisons, Logical operators, if, ifelse, while loops.)
@@ -153,3 +152,4 @@ At the end of this project, you are expected to be able to [explain to anyone](h
 *	There should be no errors and no warnings during compilation
 *	You are not allowed to use ``system``
 *	Your code should use the ``Betty`` style. It will be checked using [betty-style.pl](https://github.com/holbertonschool/Betty/blob/master/betty-style.pl) and [betty-doc.pl](https://github.com/holbertonschool/Betty/blob/master/betty-doc.pl)
+</details>
