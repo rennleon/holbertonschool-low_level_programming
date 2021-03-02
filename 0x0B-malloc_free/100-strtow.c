@@ -25,7 +25,7 @@ char **strtow(char *str)
 	/* 1 extra space for NULL at the end of array*/
 	strings = malloc((arr_len + 1) * sizeof(char *));
 
-	if (strings == NULL)
+	if (strings == NULL || arr_len == 0)
 		return (NULL);
 
 	for (i = 0; str[i] != '\0'; i++)
