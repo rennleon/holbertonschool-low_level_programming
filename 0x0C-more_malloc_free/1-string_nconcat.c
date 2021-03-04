@@ -16,6 +16,7 @@ char *string_nconcat(char *s1, char *s2, unsigned int n)
 {
 	int s1_len = get_len(s1);
 	int s2_len = get_len(s2);
+	char *null_str = "";
 	int	copy_len = n;
 	char *str;
 
@@ -26,6 +27,12 @@ char *string_nconcat(char *s1, char *s2, unsigned int n)
 
 	if (str == NULL)
 		return (NULL);
+
+	if (s1 == NULL)
+		s1 = null_str;
+
+	if (s2 == NULL)
+		s2 = null_str;
 
 	copy_chars(str, s1, s2, copy_len);
 
