@@ -58,7 +58,7 @@ int get_len(char *str)
  * @dest: Destiny buffer
  * @src1: First source buffer
  * @src2: Second source buffer
- * copy_len: Number of char to be copied from src2 to dest
+ * @copy_len: Number of char to be copied from src2 to dest
  */
 void copy_chars(char *dest, char *src1, char *src2, int copy_len)
 {
