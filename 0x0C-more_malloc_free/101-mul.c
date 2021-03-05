@@ -79,6 +79,7 @@ int main(int argc, char **argv)
 
 	printf("%s\n", &res[asign_res_ind]);
 	/*print_result(res, asign_res_ind);*/
+	free(res);
 
 	return (0);
 }
