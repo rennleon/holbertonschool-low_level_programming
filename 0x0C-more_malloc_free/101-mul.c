@@ -5,6 +5,7 @@
 int arg_is_number(char *, int *);
 int is_number(char);
 void print_result(char *, int);
+void mult_nums(char *, int *, int, int, int);
 
 /**
  * main- Entry point
@@ -47,7 +48,7 @@ int main(int argc, char **argv)
 	res[r_max_len] = '\0';
 	asign_res_ind = r_max_len;
 	ires_main = r_max_len - 1;
-
+	
 	for (in2 = len_n2 - 1; in2 >= 0; in2--)
 	{
 		p_sum = 0;
@@ -80,8 +81,8 @@ int main(int argc, char **argv)
 		asign_res_ind = ires + 1;
 	}
 
-	printf("%s\n", &res[asign_res_ind]);
-	/*print_result(res, asign_res_ind);*/
+	/*printf("%s\n", &res[asign_res_ind]);*/
+	print_result(res, asign_res_ind);
 	free(res);
 
 	return (0);
@@ -130,9 +131,15 @@ int is_number(char c)
  */
 void print_result(char *res, int pos)
 {
+	int is_left_zero = 1;
+
 	while (res[pos] != '\0')
 	{
-		_putchar(res[pos]);
+		if (res[pos] != '0' && is_left_zero == 1)
+			is_left_zero = 0;
+
+		if (!is_left_zero)
+			_putchar(res[pos]);
 		pos++;
 	}
 	_putchar('\n');
