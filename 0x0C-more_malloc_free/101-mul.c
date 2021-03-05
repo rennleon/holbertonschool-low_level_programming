@@ -48,7 +48,7 @@ int main(int argc, char **argv)
 	res[r_max_len] = '\0';
 	asign_res_ind = r_max_len;
 	ires_main = r_max_len - 1;
-	
+
 	for (in2 = len_n2 - 1; in2 >= 0; in2--)
 	{
 		p_sum = 0;
