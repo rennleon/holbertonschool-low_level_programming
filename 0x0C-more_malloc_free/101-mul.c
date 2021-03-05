@@ -40,10 +40,7 @@ int main(int argc, char **argv)
 	res = malloc(r_max_len + 1);
 
 	if (res == NULL)
-	{
-		printf("Error\n");
 		exit(98);
-	}
 
 	res[r_max_len] = '\0';
 	asign_res_ind = r_max_len;
