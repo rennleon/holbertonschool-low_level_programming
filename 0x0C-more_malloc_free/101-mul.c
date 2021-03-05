@@ -139,5 +139,10 @@ void print_result(char *res, int pos)
 			_putchar(res[pos]);
 		pos++;
 	}
+
+	/* case when one of the numbers is zero */
+	if (is_left_zero == 1)
+		_putchar('0');
+
 	_putchar('\n');
 }
