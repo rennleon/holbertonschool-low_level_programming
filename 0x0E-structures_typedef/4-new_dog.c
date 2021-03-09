@@ -2,7 +2,7 @@
 #include "dog.h"
 
 int len(char *);
-char *get_str(char *);
+char *get_str(char *, char *);
 
 /**
  * new_dog - Creates anes dog struct
