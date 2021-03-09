@@ -7,14 +7,17 @@
  */
 void print_dog(struct dog *d)
 {
-	char *name = d->name;
-	char *owner = d->owner;
+	char *name, *owner;
 
 	if (d == NULL)
 		return;
 
+	name = d->name;
+
 	if (d->name == NULL)
 		name = "(nil)";
+
+	owner = d->owner;
 
 	if (d->owner == NULL)
 		owner = "(nil)";
