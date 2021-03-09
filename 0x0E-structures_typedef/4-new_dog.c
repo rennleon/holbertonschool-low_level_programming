@@ -1,6 +1,7 @@
 #include <stdlib.h>
 #include "dog.h"
 
+int len(char *);
 char *get_str(char *);
 
 /**
@@ -13,51 +14,69 @@ char *get_str(char *);
  */
 dog_t *new_dog(char *name, float age, char *owner)
 {
-	dog_t *new = malloc(sizeof(*new));
+	dog_t *new;
+
+	if (name == NULL || owner == NULL)
+		return (NULL);
+
+	new	= malloc(sizeof(*new));
 
 	if (new == NULL)
 		return (NULL);
 
-	new->name = get_str(name);
-	new->age = age;
-	new->owner = get_str(owner);
+	new->name = malloc(len(name));
 
-	if (new->name == NULL || new->owner == NULL)
+	if (new->name == NULL)
 		return (NULL);
+
+	new->owner = malloc(len(owner));
+
+	if (new->owner == NULL)
+		return (NULL);
+
+	new->name = get_str(new->name, name);
+	new->age = age;
+	new->owner = get_str(new->owner, owner);
 
 	return (new);
 }
 
 /**
- * get_str - Cpies a string
- * @s: String to be copied
+ * len - Calculates the length of a string
+ * @s: String
  *
- * Return: A pointer to the copy of s
+ * Return: Length of s
  */
-char *get_str(char *s)
+int len(char *s)
 {
-	int len = 0;
-	char *str;
+	int l = 0;
 
-	while (s[len] != 0)
-		len++;
+	while (s[l] != '\0')
+		l++;
 
-	str = malloc(len);
+	return (l);
+}
 
-	if (str == NULL)
-		return (NULL);
+/**
+ * get_str - Copies a string
+ * @dest: Buffer destiny
+ * @src: Buffer source
+ *
+ * Return: A pointer to the copy of dest
+ */
+char *get_str(char *dest, char *src)
+{
+	int l = 0;
 
-	len = 0;
-
-	while (s[len] != 0)
+	while (src[l] != 0)
 	{
-		str[len] = s[len];
-		len++;
+		dest[l] = src[l];
+		l++;
 	}
 
-	str[len] = '\0';
+	dest[l] = '\0';
 
-	return (str);
+	return (dest);
 }
 
 
