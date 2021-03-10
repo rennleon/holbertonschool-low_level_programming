@@ -12,7 +12,7 @@ typedef struct op
 	int (*f)(int a, int b);
 } op_t;
 
-/* 3-op_functions.c */ 
+/* 3-op_functions.c */
 int op_add(int a, int b);
 
 int op_sub(int a, int b);

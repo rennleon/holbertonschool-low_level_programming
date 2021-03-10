@@ -3,6 +3,13 @@
 #include <string.h>
 #include "3-calc.h"
 
+/**
+ * main - Entry point
+ * @argc: Number of args
+ * @argv: Array of string args
+ *
+ * Return: 0 on sucess, otherwise returns error code
+ */
 int main(int argc, char **argv)
 {
 	int (*oper)(int, int) = NULL;

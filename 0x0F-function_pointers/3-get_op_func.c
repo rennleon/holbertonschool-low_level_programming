@@ -2,6 +2,12 @@
 #include <string.h>
 #include "3-calc.h"
 
+/**
+ * get_op_func - Returns a function based on s operation argument
+ * @s: String defining the arihmetic operation to be performed
+ *
+ * Return: A pointer to the arithmetic function
+ */
 int (*get_op_func(char *s))(int, int)
 {
 	int i = 0;
@@ -17,10 +23,10 @@ int (*get_op_func(char *s))(int, int)
 	while (ops[i].op != NULL)
 	{
 		if (strcmp(ops[i].op, s) == 0)
-			return ops[i].f;
+			return (ops[i].f);
 
 		i++;
 	}
 
-	return NULL;
+	return (NULL);
 }
