@@ -1,6 +1,8 @@
 #ifndef VARIADIC_FUNC_H
 #define VARIADIC_FUNC_H
 
+#include <stdarg.h>
+
 int _putchar(char);
 
 /* 0x10 */
