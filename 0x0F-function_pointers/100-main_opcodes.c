@@ -3,6 +3,8 @@
 
 /**
  * main - Entry point
+ * @argc: Number of args
+ * @argv: Arrays of string args
  *
  * Return: 0 on success
  */
