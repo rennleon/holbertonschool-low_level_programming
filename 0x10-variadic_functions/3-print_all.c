@@ -31,7 +31,7 @@ void print_all(const char * const format, ...)
 
 	va_start(args_list, format);
 
-	while (format[iformat] != '\0')
+	while (format && format[iformat] != '\0')
 	{
 		ifmt = 0;
 
