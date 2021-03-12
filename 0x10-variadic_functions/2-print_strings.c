@@ -23,7 +23,9 @@ void print_strings(const char *separator, const unsigned int n, ...)
 	for (iter = 0; iter < n; iter++)
 	{
 		arg_value = va_arg(arg_list, char *);
-		printf("%s", arg_value);
+
+		if (arg_value)
+			printf("%s", arg_value);
 
 		if (separator && iter < n - 1)
 			printf("%s", separator);
