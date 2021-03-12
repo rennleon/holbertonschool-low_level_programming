@@ -20,12 +20,12 @@ void print_strings(const char *separator, const unsigned int n, ...)
 
 	va_start(arg_list, n);
 
-	for (iter = 0; iter < n - 1; iter++)
+	for (iter = 0; iter < n; iter++)
 	{
 		arg_value = va_arg(arg_list, char *);
 		printf("%s", arg_value);
 
-		if (separator && iiter < n - 1)
+		if (separator && iter < n - 1)
 			printf("%s", separator);
 	}
 
