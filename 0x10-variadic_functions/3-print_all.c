@@ -1,7 +1,4 @@
 #include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <stdarg.h>
 #include "variadic_functions.h"
 
 void fnChar(va_list args_list);
@@ -41,13 +38,11 @@ void print_all(const char * const format, ...)
 			{
 				printf("%s", separator);
 				fmts[ifmt].fn(args_list);
+				separator = ", ";
 				break;
 			}
 			ifmt++;
 		}
-
-		separator = ", ";
-
 		iformat++;
 	}
 
