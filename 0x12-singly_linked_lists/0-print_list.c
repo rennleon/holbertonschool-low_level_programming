@@ -1,4 +1,4 @@
-#include "list.h"
+#include "lists.h"
 
 /**
  * print_list - Prints the elements of a singly linked list
@@ -8,7 +8,7 @@
  */
 size_t print_list(const list_t *h)
 {
-	int coun = 0;
+	int count = 0;
 
 	if (h == NULL)
 		return (0);
