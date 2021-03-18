@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-void print_before_main (void) __attribute__ ((constructor));
+void print_before_main(void) __attribute__ ((constructor));
 /**
  * print_before_main - Executes it's code before masin is executed
  */
