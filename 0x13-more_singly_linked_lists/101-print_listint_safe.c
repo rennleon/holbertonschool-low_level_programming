@@ -35,7 +35,10 @@ size_t print_listint_safe(const listint_t *head)
 		}
 
 		if (compare_slow_curr && slow == curr)
-			exit(98);
+		{
+			printf("-> [%p] %d\n", (void *)curr, curr->n);
+			break;/*exit(98);*/
+		}
 	}
 
 	return (count);
