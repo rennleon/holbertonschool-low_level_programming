@@ -38,11 +38,11 @@ size_t free_listint_safe(listint_t **h)
 		{
 			tmp->next = NULL;
 			free(tmp);
+			*h = NULL;
 			return (++count);
 		}
 	}
 
-	/*free(*h);*/
 	*h = NULL;
 
 	return (count);
