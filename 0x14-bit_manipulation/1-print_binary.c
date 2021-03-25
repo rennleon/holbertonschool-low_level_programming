@@ -6,27 +6,20 @@
  */
 void print_binary(unsigned long int n)
 {
+	int most_sig_bit_passed = 0;
 	int idx, bits_n = sizeof(n) * 8;
-	unsigned long int mask;
 
-	if (n <= 1)
+	if (n == 0)
 	{
-		_putchar('0' + n);
+		_putchar('0');
 		return;
 	}
 
-	for (idx = bits_n; idx > 0; idx--)
-		if (n & (1 << (idx - 1)))
-			break;
-
-	mask = 1 << (idx - 1);
-
-	while (mask > 0)
+	for (idx = bits_n - 1; idx >= 0; idx--)
 	{
-		if (n & mask)
-			_putchar('1');
-		else
-			_putchar('0');
-		mask = mask >> 1;
+		if ((n >> idx) & 1)
+			most_sig_bit_passed = 1;
+		if (most_sig_bit_passed)
+			_putchar('0' + ((n >> idx) & 1));
 	}
 }
