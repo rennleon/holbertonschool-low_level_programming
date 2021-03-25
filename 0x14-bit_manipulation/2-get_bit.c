@@ -1,7 +1,7 @@
 #include "holberton.h"
 
 /**
- * get_bit - Prints a binary representation of a number
+ * get_bit - Gets the value of a bit at certain index
  * @n: Number to be represented as binary
  * @index: Bit index to get the value
  *
