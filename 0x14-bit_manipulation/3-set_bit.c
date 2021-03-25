@@ -5,7 +5,7 @@
  * @n: Pointer to number to be represented as binary
  * @index: Bit index to get the value
  *
- * Return: Value of bit at specified index
+ * Return: 1 if succeds, -1 otherwise
  */
 int set_bit(unsigned long int *n, unsigned int index)
 {
