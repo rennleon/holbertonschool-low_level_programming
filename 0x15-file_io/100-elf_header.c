@@ -174,12 +174,12 @@ void print_abi_version(unsigned char *e_ident)
 
 void print_type(Elf64_Half e_type)
 {
-	printf("  OS/ABI:                            ");
+	printf("  Type:                              ");
 
 	if (e_type == ET_NONE)
 		printf("NONE (None)");
 	else if (e_type == ET_REL)
-		printf("EXEC (Relocatable file)");
+		printf("REL (Relocatable file)");
 	else if (e_type == ET_EXEC)
 		printf("EXEC (Executable file)");
 	else if (e_type == ET_DYN)
