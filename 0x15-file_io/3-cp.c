@@ -46,7 +46,7 @@ int main(int ac, char **av)
 		curr_write = write(fd_to, buff, curr_read);
 		check_write_err(curr_write, file_to);
 
-		fd_to = open(file_to, O_WRONLY | O_APPEND);
+		/*fd_to = open(file_to, O_WRONLY | O_APPEND);*/
 	} while (curr_read > 0);
 
 	close_fd(fd_from);
