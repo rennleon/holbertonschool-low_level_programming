@@ -4,8 +4,9 @@
 #include <fcntl.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 
+void check_read_err(int status, char *filename);
+void check_write_err(int status, char *filename);
 void close_fd(int fd);
 
 /**
@@ -29,26 +30,21 @@ int main(int ac, char **av)
 		exit(97);
 	}
 
-	file_from = strdup(av[1]);
-	file_to = strdup(av[2]);
+	file_from = av[1];
+	file_to = av[2];
 
 	fd_from = open(file_from, O_RDONLY);
+	check_read_err(fd_from, file_from);
+
 	fd_to = open(file_to, O_CREAT | O_TRUNC | O_WRONLY, 0664);
+	check_write_err(fd_to, file_to);
 
 	do {
 		curr_read = read(fd_from, buff, buff_size);
-		if (fd_from == -1 || curr_read == -1)
-		{
-			dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", file_from);
-			exit(98);
-		}
+		check_read_err(curr_read, file_from);
 
 		curr_write = write(fd_to, buff, curr_read);
-		if (fd_to == -1 || curr_write == -1)
-		{
-			dprintf(STDERR_FILENO, "Error: Can't write to %s\n", file_to);
-			exit(99);
-		}
+		check_write_err(curr_write, file_to);
 
 		fd_to = open(file_to, O_WRONLY | O_APPEND);
 	} while (curr_read > 0);
@@ -60,16 +56,45 @@ int main(int ac, char **av)
 }
 
 /**
+ * check_read_err - Verifies if an error has ocurred and exits with status code
+ * @status: Status of the perfomed operation
+ * @filename: Name of the file on which the operation has been performed
+ */
+void check_read_err(int status, char *filename)
+{
+	if (status != -1)
+		return;
+
+	dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", filename);
+	exit(98);
+}
+
+/**
+ * check_write_err - Verifies if an error has ocurred and exits with stat code
+ * @status: Status of the perfomed operation
+ * @filename: Name of the file on which the operation has been performed
+ */
+void check_write_err(int status, char *filename)
+{
+	if (status != -1)
+		return;
+
+	dprintf(STDERR_FILENO, "Error: Can't write to %s\n", filename);
+	exit(99);
+}
+
+/**
  * close_fd - Closes a file descriptor
  * @fd: Fiedl descriptor
  */
 void close_fd(int fd)
 {
-	int close_stat = close(fd);
+	int close_stat;
 
-	if (close_stat == -1)
-	{
-		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", fd);
-		exit(100);
-	}
+	close_stat = close(fd);
+	if (close_stat != -1)
+		return;
+
+	dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", fd);
+	exit(100);
 }
