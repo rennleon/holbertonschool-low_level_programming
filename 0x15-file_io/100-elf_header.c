@@ -60,6 +60,8 @@ int main(int ac, char **av) {
 	print_type(elf64->e_type);
 	print_entry_point(elf64->e_entry);
 
+	free(elf64);
+
 	return (0);
 }
 
