@@ -42,11 +42,11 @@ int main(int ac, char **av)
 	do {
 		curr_read = read(fd_from, buff, buff_size);
 		check_read_err(curr_read, file_from);
+		if (curr_read == 0)
+			return (0);
 
 		curr_write = write(fd_to, buff, curr_read);
 		check_write_err(curr_write, file_to);
-
-		/*fd_to = open(file_to, O_WRONLY | O_APPEND);*/
 	} while (curr_read > 0);
 
 	close_fd(fd_from);
