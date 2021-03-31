@@ -39,12 +39,11 @@ int main(int ac, char **av)
 	fd_to = open(file_to, O_CREAT | O_WRONLY | O_APPEND | O_TRUNC, 0664);
 	check_write_err(fd_to, file_to);
 
-	curr_read = read(fd_from, buff, buff_size);
-	check_read_err(curr_read, file_from);
-
 	do {
 		curr_write = write(fd_to, buff, curr_read);
 		check_write_err(curr_write, file_to);
+		if (curr_write == 0)
+			break;
 
 		curr_read = read(fd_from, buff, buff_size);
 		check_read_err(curr_read, file_from);
