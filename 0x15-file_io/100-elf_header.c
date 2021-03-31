@@ -30,21 +30,23 @@ int main(int ac, char **av) {
 	fd = open(av[1], O_RDONLY);
 	if (fd == -1)
 	{
-		dprintf(STDERR_FILENO, "Could not OPEN file\n");
+		dprintf(STDERR_FILENO, "Error: Could not open the file\n");
 		exit(98);
 	}
 
 	elf64 = malloc(elf_size);
 	if (elf64 == NULL)
 	{
-		dprintf(STDERR_FILENO, "Could not ALLOCATE MEMORY file\n");
+		close(fd);
+		dprintf(STDERR_FILENO, "Error: Could not allocate memory file\n");
 		exit(98);
 	}
 
 	if (read(fd, elf64, elf_size) == -1)
 	{
+		close(fd);
 		free(elf64);
-		dprintf(STDERR_FILENO, "Could not READ file\n");
+		dprintf(STDERR_FILENO, "Error: Could not read the file\n");
 		exit(98);
 	}
 
