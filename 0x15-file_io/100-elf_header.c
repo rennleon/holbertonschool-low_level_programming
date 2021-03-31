@@ -179,15 +179,15 @@ void print_osabi(unsigned char *e_ident)
 	else if (e_ident[EI_OSABI] == ELFOSABI_SYSV)
 		printf("UNIX - System V");
 	else if (e_ident[EI_OSABI] == ELFOSABI_HPUX)
-		printf("HP-UX");
+		printf("UNIX - HP-UX");
 	else if (e_ident[EI_OSABI] == ELFOSABI_NETBSD)
 		printf("UNIX - NetBSD");
 	else if (e_ident[EI_OSABI] == ELFOSABI_LINUX)
-		printf("Linux");
+		printf("UNIX - Linux");
 	else if (e_ident[EI_OSABI] == ELFOSABI_SOLARIS)
 		printf("UNIX - Solaris");
 	else if (e_ident[EI_OSABI] == ELFOSABI_IRIX)
-		printf("IRIX");
+		printf("UNIX - IRIX");
 	else if (e_ident[EI_OSABI] == ELFOSABI_FREEBSD)
 		printf("UNIX - FreeBSD");
 	else if (e_ident[EI_OSABI] == ELFOSABI_TRU64)
