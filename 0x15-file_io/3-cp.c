@@ -46,7 +46,6 @@ int main(int ac, char **av)
 		curr_write = write(fd_to, buff, curr_read);
 		if (fd_to == -1 || curr_write == -1)
 		{
-			close(fd_from);
 			dprintf(STDERR_FILENO, "Error: Can't write to %s\n", file_to);
 			exit(99);
 		}
