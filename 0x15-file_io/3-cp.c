@@ -6,7 +6,6 @@
 #include <stdlib.h>
 #include <string.h>
 
-int len(char *);
 void close_fd(int fd);
 
 /**
@@ -26,7 +25,7 @@ int main(int ac, char **av)
 
 	if (ac != 3)
 	{
-		write(STDERR_FILENO, "Usage: cp file_from file_to\n", 29);
+		dprintf(STDERR_FILENO, "Usage: cp file_from file_to\n");
 		exit(97);
 	}
 
@@ -58,22 +57,6 @@ int main(int ac, char **av)
 	close_fd(fd_to);
 
 	return (0);
-}
-
-/**
- * len - Calculates the length of a string
- * @str: String param
- *
- * Return: Length of str
-*/
-int len(char *str)
-{
-	int length = 0;
-
-	while (str[length] != '\0')
-		length++;
-
-	return (length);
 }
 
 /**
