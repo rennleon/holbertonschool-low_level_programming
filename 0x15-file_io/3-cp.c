@@ -36,7 +36,7 @@ int main(int ac, char **av)
 	fd_from = open(file_from, O_RDONLY);
 	check_read_err(fd_from, file_from);
 
-	fd_to = open(file_to, O_CREAT | O_TRUNC | O_WRONLY, 0664);
+	fd_to = open(file_to, O_CREAT | O_WRONLY | O_TRUNC, 0664);
 	check_write_err(fd_to, file_to);
 
 	do {
