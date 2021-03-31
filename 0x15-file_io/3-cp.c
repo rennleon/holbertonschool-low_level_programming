@@ -21,7 +21,7 @@ int main(int ac, char **av)
 	char *file_from, *file_to;
 	char buff[1024];
 	int buff_size = 1024;
-	unsigned int curr_read = 0;
+	int curr_read = 0, curr_write = 0;
 
 	if (ac != 3)
 	{
@@ -33,25 +33,27 @@ int main(int ac, char **av)
 	file_to = strdup(av[2]);
 
 	fd_from = open(file_from, O_RDONLY);
-	if (fd_from == -1)
-	{
-		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", file_from);
-		exit(98);
-	}
-
 	fd_to = open(file_to, O_CREAT | O_TRUNC | O_WRONLY, 0664);
-	if (fd_to == -1)
-	{
-		close(fd_from);
-		dprintf(STDERR_FILENO, "Error: Can't write to %s\n", file_to);
-		exit(99);
-	}
 
 	do {
-		curr_read = read(fd_from, buff, buff_size - 1);
-		buff[curr_read] = '\0';
-		dprintf(fd_to, "%s", buff);
-	} while (curr_read != 0);
+		if (fd_from == -1 || curr_read == -1)
+		{
+			dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", file_from);
+			exit(98);
+		}
+
+		if (fd_to == -1 || curr_write == -1)
+		{
+			close(fd_from);
+			dprintf(STDERR_FILENO, "Error: Can't write to %s\n", file_to);
+			exit(99);
+		}
+
+		curr_read = read(fd_from, buff, buff_size);
+		curr_write = write(fd_to, buff, curr_read);
+
+		fd_to = open(file_to, O_WRONLY | O_APPEND);
+	} while (curr_read > 0);
 
 	close_fd(fd_from);
 	close_fd(fd_to);
