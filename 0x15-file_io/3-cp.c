@@ -40,13 +40,13 @@ int main(int ac, char **av)
 	check_write_err(fd_to, file_to);
 
 	do {
-		curr_write = write(fd_to, buff, curr_read);
-		check_write_err(curr_write, file_to);
+		curr_read = read(fd_from, buff, buff_size);
+		check_read_err(curr_read, file_from);
 		if (curr_write == 0)
 			break;
 
-		curr_read = read(fd_from, buff, buff_size);
-		check_read_err(curr_read, file_from);
+		curr_write = write(fd_to, buff, curr_read);
+		check_write_err(curr_write, file_to);
 	} while (curr_read > 0);
 
 	close_fd(fd_from);
