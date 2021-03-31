@@ -36,21 +36,20 @@ int main(int ac, char **av)
 	fd_to = open(file_to, O_CREAT | O_TRUNC | O_WRONLY, 0664);
 
 	do {
+		curr_read = read(fd_from, buff, buff_size);
 		if (fd_from == -1 || curr_read == -1)
 		{
 			dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", file_from);
 			exit(98);
 		}
 
+		curr_write = write(fd_to, buff, curr_read);
 		if (fd_to == -1 || curr_write == -1)
 		{
 			close(fd_from);
 			dprintf(STDERR_FILENO, "Error: Can't write to %s\n", file_to);
 			exit(99);
 		}
-
-		curr_read = read(fd_from, buff, buff_size);
-		curr_write = write(fd_to, buff, curr_read);
 
 		fd_to = open(file_to, O_WRONLY | O_APPEND);
 	} while (curr_read > 0);
