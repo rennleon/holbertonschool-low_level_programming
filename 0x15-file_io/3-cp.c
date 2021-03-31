@@ -42,7 +42,7 @@ int main(int ac, char **av)
 	do {
 		curr_read = read(fd_from, buff, buff_size);
 		check_read_err(curr_read, file_from);
-		if (curr_write == 0)
+		if (curr_read == 0)
 			break;
 
 		curr_write = write(fd_to, buff, curr_read);
