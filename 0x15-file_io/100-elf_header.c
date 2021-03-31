@@ -12,11 +12,17 @@ void print_class(unsigned char *e_ident);
 void print_data(unsigned char *e_ident);
 void print_version(unsigned char *e_ident);
 void print_osabi(unsigned char *e_ident);
-void print_abi_version(unsigned char *e_ident);
-void print_type(Elf64_Half e_type);
-void print_entry_point(Elf64_Addr e_entry);
+void print_type(unsigned int e_type);
 
-int main(int ac, char **av) {
+/**
+ * main - Prints elf header of elf file
+ * @ac: Arg count
+ * @av: Arg array
+ *
+ * Return: 0 on success
+ */
+int main(int ac, char **av)
+{
 	int fd;
 	Elf64_Ehdr *elf64;
 	int elf_size = sizeof(Elf64_Ehdr);
@@ -56,15 +62,26 @@ int main(int ac, char **av) {
 	print_data(elf64->e_ident);
 	print_version(elf64->e_ident);
 	print_osabi(elf64->e_ident);
-	print_abi_version(elf64->e_ident);
+
+	printf("  ABI Version:                       %d",
+		elf64->e_ident[EI_ABIVERSION]);
+	printf("\n");
+
 	print_type(elf64->e_type);
-	print_entry_point(elf64->e_entry);
+
+	printf("  Entry point address:               0x%x",
+		(unsigned int)elf64->e_entry);
+	printf("\n");
 
 	free(elf64);
 
 	return (0);
 }
 
+/**
+ * check_elf - Verifies that a file is an elf file
+ * @e_ident: Array of chars containing info of the elf file
+ */
 void check_elf(unsigned char *e_ident)
 {
 	if (
@@ -74,25 +91,33 @@ void check_elf(unsigned char *e_ident)
 		e_ident[EI_MAG3] != 'F'
 	)
 	{
-		dprintf(STDERR_FILENO, "Error: Not an ELF file - it has the wrong magic bytes at the start\n");
+		dprintf(STDERR_FILENO, "Error: Not an ELF file\n");
 		exit(98);
 	}
 
 	printf("ELF Header:\n");
 }
 
+/**
+ * print_magic - Prints the magic values of an elf file
+ * @e_ident: Array of chars containing info of the elf file
+ */
 void print_magic(unsigned char *e_ident)
 {
 	int i;
 
 	printf("  Magic:   ");
-	
+
 	for (i = 0; i < EI_NIDENT - 1; i++)
 		printf("%02x ", e_ident[i]);
 
 	printf("%02x\n", e_ident[EI_NIDENT - 1]);
 }
 
+/**
+ * print_class - Prints the class of the elf file
+ * @e_ident: Array of chars containing info of the elf file
+ */
 void print_class(unsigned char *e_ident)
 {
 	printf("  Class:                             ");
@@ -108,6 +133,10 @@ void print_class(unsigned char *e_ident)
 	printf("\n");
 }
 
+/**
+ * print_data - Prints the machine's endiannes
+ * @e_ident: Array of chars containing info of the elf file
+ */
 void print_data(unsigned char *e_ident)
 {
 	printf("  Data:                              ");
@@ -123,6 +152,10 @@ void print_data(unsigned char *e_ident)
 	printf("\n");
 }
 
+/**
+ * print_version - Pprints the version of the elf file
+ * @e_ident: Array of chars containing info of the elf file
+ */
 void print_version(unsigned char *e_ident)
 {
 	printf("  Version:                           %d", e_ident[EI_VERSION]);
@@ -133,6 +166,10 @@ void print_version(unsigned char *e_ident)
 	printf("\n");
 }
 
+/**
+ * print_osabi - Prints the os Application Binary Interface of elf file
+ * @e_ident: Array of chars containing info of the elf file
+ */
 void print_osabi(unsigned char *e_ident)
 {
 	printf("  OS/ABI:                            ");
@@ -165,14 +202,12 @@ void print_osabi(unsigned char *e_ident)
 	printf("\n");
 }
 
-void print_abi_version(unsigned char *e_ident)
-{
-	printf("  ABI Version:                       %d", e_ident[EI_ABIVERSION]);
 
-	printf("\n");
-}
-
-void print_type(Elf64_Half e_type)
+/**
+ * print_type - Prints the type of an elf file
+ * @e_type: Array of chars containing info of the elf file
+ */
+void print_type(unsigned int e_type)
 {
 	printf("  Type:                              ");
 
@@ -189,11 +224,5 @@ void print_type(Elf64_Half e_type)
 	else
 		printf("<unknown: %d>", e_type);
 
-	printf("\n");
-}
-
-void print_entry_point(Elf64_Addr e_entry)
-{
-	printf("  Entry point address:               0x%x", (unsigned int)e_entry);
 	printf("\n");
 }
