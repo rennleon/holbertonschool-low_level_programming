@@ -221,10 +221,12 @@ void print_type(unsigned char *e_ident, unsigned int e_type)
 	/* If is big endiann 32bits, we need to change the bytes and */
 	/* use only 2 first bytes */
 	if (e_ident[EI_DATA] == ELFDATA2MSB)
+	{
 		if (e_ident[EI_CLASS] == ELFCLASS32)
 			e_type = bigend_to_littleend(e_type, 2);
 		else
 			e_type = bigend_to_littleend(e_type, 4);
+	}
 
 	if (e_type == ET_NONE)
 		printf("NONE (None)");
