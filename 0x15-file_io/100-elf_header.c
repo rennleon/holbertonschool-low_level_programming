@@ -224,7 +224,7 @@ void print_type(unsigned int e_type)
 	else if (e_type == ET_CORE)
 		printf("CORE (Core file)");
 	else
-		printf("<unknown: %d>", e_type);
+		printf("<unknown>: %x", e_type);
 
 	printf("\n");
 }
