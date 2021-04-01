@@ -73,6 +73,11 @@ int main(int ac, char **av)
 		(unsigned int)elf64->e_entry);
 
 	free(elf64);
+	if (close(fd) == -1)
+	{
+		dprintf(STDERR_FILENO, "Error: Could not close fd %d\n", fd);
+		exit(98);
+	}
 
 	return (0);
 }
