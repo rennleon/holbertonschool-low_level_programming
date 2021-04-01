@@ -110,7 +110,7 @@ void print_magic(unsigned char *e_ident)
 	printf("  Magic:   ");
 
 	for (i = 0; i < EI_NIDENT - 1; i++)
-		printf("%2.2x ", e_ident[i]);
+		printf("%02x ", e_ident[i]);
 
 	printf("%02x\n", e_ident[EI_NIDENT - 1]);
 }
