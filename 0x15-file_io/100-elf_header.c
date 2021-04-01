@@ -12,7 +12,7 @@ void print_class(unsigned char *e_ident);
 void print_data(unsigned char *e_ident);
 void print_version(unsigned char *e_ident);
 void print_osabi(unsigned char *e_ident);
-void print_type(unsigned int e_type);
+void print_type(unsigned e_type);
 
 /**
  * main - Prints elf header of elf file
@@ -209,7 +209,7 @@ void print_osabi(unsigned char *e_ident)
  * print_type - Prints the type of an elf file
  * @e_type: Array of chars containing info of the elf file
  */
-void print_type(unsigned int e_type)
+void print_type(unsigned e_type)
 {
 	printf("  Type:                              ");
 
