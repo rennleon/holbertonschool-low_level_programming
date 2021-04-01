@@ -64,15 +64,13 @@ int main(int ac, char **av)
 	print_version(elf64->e_ident);
 	print_osabi(elf64->e_ident);
 
-	printf("  ABI Version:                       %d",
+	printf("  ABI Version:                       %d\n",
 		elf64->e_ident[EI_ABIVERSION]);
-	printf("\n");
 
 	print_type(elf64->e_type);
 
-	printf("  Entry point address:               0x%x",
+	printf("  Entry point address:               0x%x\n",
 		(unsigned int)elf64->e_entry);
-	printf("\n");
 
 	free(elf64);
 
