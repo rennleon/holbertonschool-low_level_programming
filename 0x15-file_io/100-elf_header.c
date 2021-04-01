@@ -69,8 +69,8 @@ int main(int ac, char **av)
 
 	print_type(elf64->e_type);
 
-	printf("  Entry point address:               0x%x\n",
-		(unsigned int)elf64->e_entry);
+	printf("  Entry point address:               0x%lx\n",
+		(unsigned long int)elf64->e_entry);
 
 	free(elf64);
 	if (close(fd) == -1)
