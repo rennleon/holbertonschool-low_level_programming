@@ -262,6 +262,8 @@ void print_entry(unsigned char *e_ident, unsigned int e_entry)
  * bigend_to_littleend - Converts numbers from big endian to little endian
  * @num: Number to be converted
  * @bytes: Number of bytes of the number
+ *
+ * Return: Number as little endian
  */
 unsigned int bigend_to_littleend(unsigned int num, int bytes)
 {
