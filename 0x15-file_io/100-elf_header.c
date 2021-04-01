@@ -163,6 +163,8 @@ void print_version(unsigned char *e_ident)
 
 	if (e_ident[EI_VERSION] == EV_CURRENT)
 		printf(" (current)");
+	else if (e_ident[EI_VERSION] != EV_NONE)
+		printf(" <unknown: %lx>", e_ident[EI_VERSION]);
 
 	printf("\n");
 }
