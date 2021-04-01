@@ -12,7 +12,10 @@ void print_class(unsigned char *e_ident);
 void print_data(unsigned char *e_ident);
 void print_version(unsigned char *e_ident);
 void print_osabi(unsigned char *e_ident);
-void print_type(unsigned int e_type);
+void print_type(unsigned char *e_ident, unsigned int e_type);
+void print_entry(unsigned char *e_ident, unsigned int e_entry);
+
+unsigned int bigend_to_littleend(unsigned int num, int bytes);
 
 /**
  * main - Prints elf header of elf file
@@ -63,14 +66,10 @@ int main(int ac, char **av)
 	print_data(elf64->e_ident);
 	print_version(elf64->e_ident);
 	print_osabi(elf64->e_ident);
-
 	printf("  ABI Version:                       %d\n",
 		elf64->e_ident[EI_ABIVERSION]);
-
-	print_type(elf64->e_type);
-
-	printf("  Entry point address:               0x%x\n",
-		(unsigned int)elf64->e_entry);
+	print_type(elf64->e_ident, elf64->e_type);
+	print_entry(elf64->e_ident, elf64->e_entry);
 
 	free(elf64);
 	if (close(fd) == -1)
@@ -212,11 +211,20 @@ void print_osabi(unsigned char *e_ident)
 
 /**
  * print_type - Prints the type of an elf file
- * @e_type: Array of chars containing info of the elf file
+ * @e_ident: Array of chars containing info of the elf file
+ * @e_type: Type of the elf file
  */
-void print_type(unsigned int e_type)
+void print_type(unsigned char *e_ident, unsigned int e_type)
 {
 	printf("  Type:                              ");
+
+	/* If is big endiann 32bits, we need to change the bytes and */
+	/* use only 2 first bytes */
+	if (e_ident[EI_DATA] == ELFDATA2MSB)
+		if (e_ident[EI_CLASS] == ELFCLASS32)
+			e_type = bigend_to_littleend(e_type, 2);
+		else
+			e_type = bigend_to_littleend(e_type, 4);
 
 	if (e_type == ET_NONE)
 		printf("NONE (None)");
@@ -232,4 +240,34 @@ void print_type(unsigned int e_type)
 		printf("<unknown>: %x", e_type);
 
 	printf("\n");
+}
+
+/**
+ * print_entry - Prints the type of an elf file
+ * @e_ident: Array of chars containing info of the elf file
+ * @e_entry: Address value of elf's file entry point
+ */
+void print_entry(unsigned char *e_ident, unsigned int e_entry)
+{
+	if (e_ident[EI_DATA] == ELFDATA2MSB)
+		e_entry = bigend_to_littleend(e_entry, 4);
+
+		printf("  Entry point address:               0x%x\n",
+		(unsigned int)e_entry);
+}
+
+/**
+ * bigend_to_littleend - Converts numbers from big endian to little endian
+ * @num: Number to be converted
+ * @bytes: Number of bytes of the number
+ */
+unsigned int bigend_to_littleend(unsigned int num, int bytes)
+{
+	if (bytes == 2)
+		return (((num >> 8) | (num << 8)) & 0x00ff);
+
+	return (((num >> 24) & 0xff) | /* move byte 3 to byte 0 */
+		((num << 8) & 0xff0000) | /* move byte 1 to byte 2 */
+		((num >> 8) & 0xff00) | /* move byte 2 to byte 1 */
+		((num << 24) & 0xff000000)); /* byte 0 to byte 3	 */
 }
