@@ -26,6 +26,7 @@ int main(int ac, char **av)
 	int fd;
 	Elf64_Ehdr *elf64;
 	int elf_size = sizeof(Elf64_Ehdr);
+	/* failing cases: sortix32, sparcbigendian32*/
 
 	if (ac != 2)
 	{
@@ -176,32 +177,35 @@ void print_osabi(unsigned char *e_ident)
 
 	if (e_ident[EI_OSABI] == ELFOSABI_NONE)
 		printf("UNIX - System V");
-	else if (e_ident[EI_OSABI] == ELFOSABI_SYSV)
-		printf("UNIX - System V");
 	else if (e_ident[EI_OSABI] == ELFOSABI_HPUX)
 		printf("UNIX - HP-UX");
 	else if (e_ident[EI_OSABI] == ELFOSABI_NETBSD)
 		printf("UNIX - NetBSD");
-	else if (e_ident[EI_OSABI] == ELFOSABI_LINUX)
-		printf("UNIX - Linux");
+	else if (e_ident[EI_OSABI] == ELFOSABI_GNU)
+		printf("UNIX - GNU");
 	else if (e_ident[EI_OSABI] == ELFOSABI_SOLARIS)
 		printf("UNIX - Solaris");
+	else if (e_ident[EI_OSABI] == ELFOSABI_AIX)
+		printf("UNIX - AIX");
 	else if (e_ident[EI_OSABI] == ELFOSABI_IRIX)
 		printf("UNIX - IRIX");
 	else if (e_ident[EI_OSABI] == ELFOSABI_FREEBSD)
 		printf("UNIX - FreeBSD");
 	else if (e_ident[EI_OSABI] == ELFOSABI_TRU64)
-		printf("UNIX - TRU64 UNIX");
+		printf("UNIX - TRU64");
+	else if (e_ident[EI_OSABI] == ELFOSABI_MODESTO)
+		printf("Novell - Modesto");
+	else if (e_ident[EI_OSABI] == ELFOSABI_OPENBSD)
+		printf("UNIX - OpenBSD");
 	else if (e_ident[EI_OSABI] == ELFOSABI_ARM)
-		printf("ARM architecture");
+		printf("ARM");
 	else if (e_ident[EI_OSABI] == ELFOSABI_STANDALONE)
-		printf("Stand-alone (embedded)");
+		printf("Standalone App");
 	else
-		printf("<unknown: %d>", e_ident[EI_OSABI]);
+		printf("<unknown: %x>", e_ident[EI_OSABI]);
 
 	printf("\n");
 }
-
 
 /**
  * print_type - Prints the type of an elf file
