@@ -4,7 +4,7 @@
  * sum_dlistint - Sums all nodes data of a doubly linked list
  * @head: Pointer to head node
  *
- * Return: Pointer to the nth node
+ * Return: Sum of all node data values
 */
 int sum_dlistint(dlistint_t *head)
 {
