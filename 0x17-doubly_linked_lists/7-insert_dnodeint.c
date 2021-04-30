@@ -1,7 +1,7 @@
 #include "lists.h"
 
 /**
- * insert_dnodeint_at_index - Sums all nodes data of a doubly linked list
+ * insert_dnodeint_at_index - Inserts a node at index
  * @h: Double pointer to head node
  * @idx: Index at which to insert the new node
  * @n: Data value for the new node
