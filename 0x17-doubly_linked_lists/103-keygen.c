@@ -15,13 +15,14 @@ void gen_second_half(char *str, char *password, char *username, int userlen);
 */
 int main(int __attribute__((unused))argc, char **argv)
 {
-	char *str, *username, password[6];
+	char *str, *username, password[7];
 	int userlen;
 
 	str = "A-CHRDw87lNS0E9B2TibgpnMVys5XzvtOGJcYLU+4mjW6fxqZeF3Qa1rPhdKIouk";
 
 	username = argv[1];
 	userlen = strlen(username);
+	password[6] = '\0';
 
 	gen_first_half(str, password, username, userlen);
 	gen_second_half(str, password, username, userlen);
