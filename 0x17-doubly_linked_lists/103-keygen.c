@@ -2,8 +2,8 @@
 #include <string.h>
 #include <stdlib.h>
 
-void gen_first_half(char *str, char password[], char *username, int userlen);
-void gen_second_half(char *str, char password[], char *username, int userlen);
+void gen_first_half(char *str, char *password, char *username, int userlen);
+void gen_second_half(char *str, char *password, char *username, int userlen);
 
 
 /**
@@ -13,13 +13,10 @@ void gen_second_half(char *str, char password[], char *username, int userlen);
  *
  * Return: 0 on success, 1 on failure
 */
-int main(int argc, char **argv)
+int main(int __attribute__((unused))argc, char **argv)
 {
 	char *str, *username, password[6];
 	int userlen;
-
-	if (argc != 2)
-		return (1);
 
 	str = "A-CHRDw87lNS0E9B2TibgpnMVys5XzvtOGJcYLU+4mjW6fxqZeF3Qa1rPhdKIouk";
 
@@ -29,7 +26,7 @@ int main(int argc, char **argv)
 	gen_first_half(str, password, username, userlen);
 	gen_second_half(str, password, username, userlen);
 
-	printf("%s\n", password);
+	printf("%s", password);
 
 	return (0);
 }
@@ -41,9 +38,9 @@ int main(int argc, char **argv)
  * @username: Arg as a string passed to the program
  * @userlen: Length of the username
 */
-void gen_first_half(char *str, char password[], char *username, int userlen)
+void gen_first_half(char *str, char *password, char *username, int userlen)
 {
-	int temp, i;
+	int temp = 0, i;
 
 	/* Pass first char */
 	password[0] = str[(userlen ^ 0x3b) & 0x3f];
@@ -67,9 +64,9 @@ void gen_first_half(char *str, char password[], char *username, int userlen)
  * @username: Arg as a string passed to the program
  * @userlen: Length of the username
 */
-void gen_second_half(char *str, char password[], char *username, int userlen)
+void gen_second_half(char *str, char *password, char *username, int userlen)
 {
-	int temp, i, c;
+	int temp = 0, i, c;
 
 	/* Pass fourth char: username and userlen */
 	temp = *username;
@@ -86,6 +83,7 @@ void gen_second_half(char *str, char password[], char *username, int userlen)
 	password[4] = str[(temp ^ 0xef) & 0x3f];
 
 	/* Pass sixth char: username and userlen */
+	temp = 0;
 	c = *username;
 	for (i = 0; i < c; i++)
 		temp = rand();
