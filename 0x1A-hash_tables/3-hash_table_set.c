@@ -10,7 +10,7 @@
 */
 int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 {
-	hash_node_t **array, *curr, *new_node;
+	hash_node_t *new_node;
 	unsigned long int index, hash;
 
 	if (ht == NULL || ht->array == NULL || key == NULL || *key == '\0')
@@ -24,12 +24,11 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 	new_node->value = strdup(value);
 	new_node->next = NULL;
 
-	array = ht->array;
 	hash = hash_djb2((const unsigned char *)key);
 	index = hash % ht->size;
 
-	new_node->next = array[index];
-	array[index] = new_node;
+	new_node->next = ht->array[index];
+	ht->array[index] = new_node;
 
 	return (1);
 }
