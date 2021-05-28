@@ -10,7 +10,7 @@ void hash_table_print(const hash_table_t *ht)
 	hash_node_t **array, *curr;
 	char *sep = "";
 
-	if (ht == NULL || ht->array == NULL)
+	if (ht == NULL)
 		return;
 
 	printf("{");
@@ -18,7 +18,7 @@ void hash_table_print(const hash_table_t *ht)
 	for (i = 0; i < ht->size; i++)
 		for (curr = array[i]; curr != NULL; curr = curr->next)
 		{
-			printf("%s'%s':'%s'", sep, curr->key, curr->value);
+			printf("%s'%s'[%ld]:'%s'", sep, curr->key, i, curr->value);
 			sep = ", ";
 		}
 	printf("}\n");
