@@ -90,5 +90,7 @@ void shash_table_delete(shash_table_t *ht);
 
 /* Dependencies */
 int insert_to_sorted_linked_list(shash_table_t *ht, shash_node_t *new_node);
+int insert_node_start(shash_node_t **head, shash_node_t *node);
+int insert_node_end(shash_node_t **tail, shash_node_t *node);
 
 #endif /* HASH_TABLES_H */

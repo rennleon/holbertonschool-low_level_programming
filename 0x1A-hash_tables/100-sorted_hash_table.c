@@ -1,0 +1,182 @@
+#include "hash_tables.h"
+
+shash_table_t *shash_table_create(unsigned long int size)
+{
+	shash_table_t *new_ht;
+
+	new_ht = malloc(sizeof(*new_ht));
+	if (new_ht == NULL)
+		return (NULL);
+	
+	new_ht->size = size;
+	new_ht->shead = NULL;
+	new_ht->stail = NULL;
+	new_ht->array = calloc(size, sizeof(*(new_ht->array)));
+	if (new_ht->array == NULL)
+	{
+		free(new_ht);
+		return (NULL);
+	}
+
+	return (new_ht);	
+}
+
+int shash_table_set(shash_table_t *ht, const char *key, const char *value)
+{
+	shash_node_t *new_node, *curr;
+	unsigned long int hash, index;
+
+	if (ht == NULL || ht->array == NULL || key == NULL || *key == '\0')
+		return (0);
+
+	hash = hash_djb2((const unsigned char *)key);
+	index = hash % ht->size;
+
+	for (curr = ht->array[index]; curr != NULL; curr = curr->next)
+		if (strcmp(curr->key, key) == 0)
+		{
+			free(curr->value);
+			curr->value = strdup(value);
+			return (1);
+		}
+
+	new_node = malloc(sizeof(*new_node));
+	if (new_node == NULL)
+		return (0);
+
+	new_node->key = strdup(key);
+	new_node->value = strdup(value);
+	new_node->snext = NULL;
+	new_node->sprev = NULL;
+	new_node->next = (ht->array)[index];
+	(ht->array)[index] = new_node;
+
+	return insert_to_sorted_linked_list(ht, new_node);
+}
+
+/**
+ * insert_to_sorted_linked_list - Inserts a node to the hashtable linked list
+ * @ht: Pointer to hash table
+ * @new_node: Node to be inserted
+ *
+ * Return: 1 on success, 0 otherwise
+*/
+int insert_to_sorted_linked_list(shash_table_t *ht, shash_node_t *new_node)
+{
+	shash_node_t *curr;
+
+	if (ht == NULL)
+		return (0);
+	
+	if (ht->shead == NULL)
+	{
+		ht->shead = new_node;
+		ht->stail = new_node;
+		return (1);
+	}
+
+	/* Insert at the begining */
+	if (strcmp(new_node->key, ht->shead->key) <= 0)
+	{
+		ht->shead->sprev = new_node;
+		new_node->snext = ht->shead;
+		ht->shead = new_node;
+		ht->shead->sprev = NULL;
+		return (1);
+	}
+
+	curr = ht->shead;
+	while (curr->snext != NULL && strcmp(curr->next->key, new_node->key) < 0)
+		curr = curr->snext;
+	
+	/* Insert at the end */
+	if (curr->next == NULL)
+	{
+		ht->stail->snext = new_node;
+		new_node->sprev = ht->stail;
+		ht->stail = new_node;
+		ht->stail->snext = NULL;
+		return (1);
+	}
+
+	/* Insert somewhere between the list */
+	curr->snext->sprev = new_node;
+	new_node->next = curr->snext;
+	curr->snext = new_node;
+	new_node->sprev = curr;
+
+	return (1);
+}
+
+char *shash_table_get(const shash_table_t *ht, const char *key)
+{
+	shash_node_t *curr;
+	unsigned long int index, hash;
+
+	if (ht == NULL || ht->array == NULL || key == NULL || *key == '\0')
+		return (NULL);
+
+	hash = hash_djb2((const unsigned char *)key);
+	index = hash % ht->size;
+
+	if ((ht->array)[index] == NULL)
+		return (NULL);
+
+	for (curr = (ht->array)[index]; curr != NULL; curr = curr->next)
+		if (strcmp(curr->key, key) == 0)
+			return (curr->value);
+
+	return (NULL);
+}
+
+void shash_table_print(const shash_table_t *ht)
+{
+	char * sep = "";
+	shash_node_t *curr;
+
+	printf("{");
+	for (curr = ht->shead; curr != NULL; sep = ", ", curr = curr->snext)
+		printf("%s'%s': '%s", sep, curr->key, curr->value);
+	
+	printf("}\n");
+}
+
+void shash_table_print_rev(const shash_table_t *ht)
+{
+	char * sep = "";
+	shash_node_t *curr;
+
+	printf("{");
+	for (curr = ht->stail; curr != NULL; sep = ", ", curr = curr->sprev)
+		printf("%s'%s': '%s", sep, curr->key, curr->value);
+	
+	printf("}\n");
+}
+
+void shash_table_delete(shash_table_t *ht)
+{
+	unsigned long int i;
+	shash_node_t **array, *curr, *prev;
+
+	if (ht == NULL || ht->array == NULL)
+		return;
+
+	array = ht->array;
+	for (i = 0; i < ht->size; i++)
+	{
+		curr = array[i];
+		while (curr != NULL)
+		{
+			prev = curr;
+			curr = curr->next;
+			prev->next = NULL;
+			free(prev->key);
+			free(prev->value);
+			free(prev);
+		}
+		array[i] = NULL;
+	}
+	free(array);
+	free(ht);
+}
+
