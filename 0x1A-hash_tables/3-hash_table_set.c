@@ -28,15 +28,8 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 	hash = hash_djb2((const unsigned char *)key);
 	index = hash % ht->size;
 
-	if (array[index] == NULL)
-		array[index] = new_node;
-	else
-	{
-		curr = array[index];
-		while (curr->next != NULL)
-			curr = curr->next;
-		curr->next = new_node;
-	}
+	new_node->next = array[index];
+	array[index] = new_node;
 
 	return (1);
 }
