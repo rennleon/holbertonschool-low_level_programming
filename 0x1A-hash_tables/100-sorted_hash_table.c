@@ -94,16 +94,26 @@ int insert_to_sorted_linked_list(shash_table_t *ht, shash_node_t *new_node)
 	}
 	/* Insert at the begining */
 	if (strcmp(new_node->key, ht->shead->key) <= 0)
-		return (insert_node_start(&(ht->shead), new_node));
-
+	{
+		ht->shead->sprev = new_node;
+		new_node->snext = ht->shead;
+		ht->shead = new_node;
+		ht->shead->sprev = NULL;
+		return (1);
+	}
 	/* Run through the list to find insertion position */
 	curr = ht->shead;
 	while (curr->snext != NULL && strcmp(curr->snext->key, new_node->key) < 0)
 		curr = curr->snext;
 	/* Insert at the end */
 	if (curr->snext == NULL)
-		return (insert_node_end(&(ht->shead), new_node));
-
+	{
+		ht->stail->snext = new_node;
+		new_node->sprev = ht->stail;
+		ht->stail = new_node;
+		ht->stail->snext = NULL;
+		return (1);
+	}
 	/* Insert somewhere between the list */
 	curr->snext->sprev = new_node;
 	new_node->snext = curr->snext;
