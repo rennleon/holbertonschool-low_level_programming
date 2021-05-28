@@ -55,6 +55,8 @@ int shash_table_set(shash_table_t *ht, const char *key, const char *value)
 		{
 			free(curr->value);
 			curr->value = strdup(value);
+			if (curr->value == NULL)
+				return (0);
 			return (1);
 		}
 
