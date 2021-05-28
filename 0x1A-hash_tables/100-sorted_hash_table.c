@@ -42,14 +42,13 @@ shash_table_t *shash_table_create(unsigned long int size)
 int shash_table_set(shash_table_t *ht, const char *key, const char *value)
 {
 	shash_node_t *new_node, *curr;
-	unsigned long int hash, index;
+	unsigned long int index;
 
 	if (ht == NULL || ht->array == NULL ||
 			key == NULL || *key == '\0' || value == NULL)
 		return (0);
 
-	hash = hash_djb2((const unsigned char *)key);
-	index = hash % ht->size;
+	index = key_index((const unsigned char *)key, ht->size);
 
 	for (curr = ht->array[index]; curr != NULL; curr = curr->next)
 		if (strcmp(curr->key, key) == 0)
