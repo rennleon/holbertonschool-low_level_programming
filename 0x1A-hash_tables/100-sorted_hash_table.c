@@ -95,7 +95,7 @@ int insert_to_sorted_linked_list(shash_table_t *ht, shash_node_t *new_node)
 		return (1);
 	}
 	/* Insert at the begining */
-	if (strcmp(new_node->key, ht->shead->key) <= 0)
+	if (strcmp(new_node->key, ht->shead->key) < 0)
 	{
 		ht->shead->sprev = new_node;
 		new_node->snext = ht->shead;
