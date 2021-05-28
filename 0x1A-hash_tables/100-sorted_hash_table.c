@@ -8,6 +8,7 @@
 */
 shash_table_t *shash_table_create(unsigned long int size)
 {
+	unsigned long int i;
 	shash_table_t *new_ht;
 
 	new_ht = malloc(sizeof(*new_ht));
@@ -17,12 +18,15 @@ shash_table_t *shash_table_create(unsigned long int size)
 	new_ht->size = size;
 	new_ht->shead = NULL;
 	new_ht->stail = NULL;
-	new_ht->array = calloc(size, sizeof(*(new_ht->array)));
+	new_ht->array = malloc(sizeof(*(new_ht->array)) * size);
 	if (new_ht->array == NULL)
 	{
 		free(new_ht);
 		return (NULL);
 	}
+
+	for (i = 0; i < size; i++)
+		(new_ht->array)[i] = NULL;
 
 	return (new_ht);
 }
@@ -88,25 +92,23 @@ int insert_to_sorted_linked_list(shash_table_t *ht, shash_node_t *new_node)
 		ht->stail = new_node;
 		return (1);
 	}
-
 	/* Insert at the begining */
 	if (strcmp(new_node->key, ht->shead->key) <= 0)
-	return (insert_node_start(&(ht->shead), new_node));
+		return (insert_node_start(&(ht->shead), new_node));
 
+	/* Run through the list to find insertion position */
 	curr = ht->shead;
 	while (curr->snext != NULL && strcmp(curr->snext->key, new_node->key) < 0)
 		curr = curr->snext;
-
 	/* Insert at the end */
 	if (curr->snext == NULL)
-		return (insert_node_end(&(ht->stail), new_node));
+		return (insert_node_end(&(ht->shead), new_node));
 
 	/* Insert somewhere between the list */
 	curr->snext->sprev = new_node;
 	new_node->snext = curr->snext;
 	curr->snext = new_node;
 	new_node->sprev = curr;
-
 	return (1);
 }
 
@@ -183,7 +185,7 @@ void shash_table_print(const shash_table_t *ht)
 
 	printf("{");
 	for (curr = ht->shead; curr != NULL; sep = ", ", curr = curr->snext)
-		printf("%s'%s': '%s", sep, curr->key, curr->value);
+		printf("%s'%s': '%s'", sep, curr->key, curr->value);
 
 	printf("}\n");
 }
@@ -199,7 +201,7 @@ void shash_table_print_rev(const shash_table_t *ht)
 
 	printf("{");
 	for (curr = ht->stail; curr != NULL; sep = ", ", curr = curr->sprev)
-		printf("%s'%s': '%s", sep, curr->key, curr->value);
+		printf("%s'%s': '%s'", sep, curr->key, curr->value);
 
 	printf("}\n");
 }
