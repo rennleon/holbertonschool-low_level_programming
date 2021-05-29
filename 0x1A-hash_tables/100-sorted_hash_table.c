@@ -65,7 +65,17 @@ int shash_table_set(shash_table_t *ht, const char *key, const char *value)
 		return (0);
 
 	new_node->key = strdup(key);
+	if (new_node->key == NULL)
+	{
+		free(new_node);
+		return (0);
+	}
 	new_node->value = strdup(value);
+	if (new_node->value == NULL)
+	{
+		free(new_node);
+		return (0);
+	}
 	new_node->snext = NULL;
 	new_node->sprev = NULL;
 	new_node->next = (ht->array)[index];
