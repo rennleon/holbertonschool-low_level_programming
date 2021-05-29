@@ -66,7 +66,6 @@ int shash_table_set(shash_table_t *ht, const char *key, const char *value)
 	new_node = malloc(sizeof(*new_node));
 	if (new_node == NULL)
 		return (0);
-
 	new_node->key = strdup(key);
 	if (new_node->key == NULL)
 	{
@@ -76,6 +75,7 @@ int shash_table_set(shash_table_t *ht, const char *key, const char *value)
 	new_node->value = strdup(value);
 	if (new_node->value == NULL)
 	{
+		free(new_node->key);
 		free(new_node);
 		return (0);
 	}
