@@ -11,6 +11,9 @@ shash_table_t *shash_table_create(unsigned long int size)
 	unsigned long int i;
 	shash_table_t *new_ht;
 
+	if (size == 0)
+		return (NULL);
+
 	new_ht = malloc(sizeof(*new_ht));
 	if (new_ht == NULL)
 		return (NULL);
@@ -257,4 +260,3 @@ void shash_table_delete(shash_table_t *ht)
 	free(array);
 	free(ht);
 }
-
