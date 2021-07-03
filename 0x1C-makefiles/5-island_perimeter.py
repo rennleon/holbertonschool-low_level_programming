@@ -10,11 +10,11 @@ def cell_perimeter(row, col):
     cell = 4
     if row - 1 >= 0 and ggrid[row - 1][col] != 0:
         cell -= 1
-    if row + 1 < height and ggrid[row + 1][col] != 0:
+    if row + 1 < gheight and ggrid[row + 1][col] != 0:
         cell -= 1
     if col - 1 >= 0 and ggrid[row][col - 1] != 0:
         cell -= 1
-    if col + 1 < width and ggrid[row][col + 1] != 0:
+    if col + 1 < gwidth and ggrid[row][col + 1] != 0:
         cell -= 1
 
     return cell
@@ -22,19 +22,21 @@ def cell_perimeter(row, col):
 
 def expand(row, col):
     """ Expands the island searching for 1's """
-    if row < 0 or row >= height:
+    if row < 0 or row >= gheight:
         return 0
-    if col < 0 or col >= width:
+    if col < 0 or col >= gwidth:
+        return 0
+    if ggrid[row][col] != 1:
         return 0
 
     perimeter = cell_perimeter(row, col)
     # mark block cell as visited
     ggrid[row][col] = -1
 
-    perimeter += expand(row - 1, col, calc_cell)
-    perimeter += expand(row + 1, col, calc_cell)
-    perimeter += expand(row, col - 1, calc_cell)
-    perimeter += expand(row, col + 1, calc_cell)
+    perimeter += expand(row - 1, col)
+    perimeter += expand(row + 1, col)
+    perimeter += expand(row, col - 1)
+    perimeter += expand(row, col + 1)
 
     return perimeter
 
@@ -45,6 +47,7 @@ def island_perimeter(grid):
         Args: grid (list of lists)
     """
     # Grid is completely surrounded, there is one island or nothing
+    global ggrid, gheight, gwidth
 
     ggrid = grid
     gheight = len(ggrid)
@@ -55,6 +58,6 @@ def island_perimeter(grid):
     for row in range(gheight):
         for col in range(gwidth):
             if ggrid[row][col] == 1:
-                return expand_island(row, col, calc_cell)
+                return expand(row, col)
 
     return 0
