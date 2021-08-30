@@ -33,7 +33,10 @@ int search_rec(int *arr, int l, int r, int value)
 {
 	int mid;
 
-	if (l >= r)
+	if (l > r)
+		return (-1);
+
+	if (l == r)
 		return ((arr[l] == value) ? l : -1);
 
 	print_subarr(arr, l, r);
