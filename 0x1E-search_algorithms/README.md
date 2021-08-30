@@ -12,7 +12,7 @@ Write a function that searches for a value in an array of integers using the [Li
 $ gcc -Wall -Wextra -Werror -pedantic 0-main.c 0-linear.c -o 0-linear
 ```
 
-`File:` [0-linear.c](0-linear.c), [0-main](/mains/0-main.c)
+`File:` [0-linear.c](0-linear.c), [0-main](./mains/0-main.c)
 
 
 ## 1. Binary search
@@ -22,7 +22,7 @@ Write a function that searches for a value in a sorted array of integers using t
 $ gcc -Wall -Wextra -Werror -pedantic 1-main.c 1-binary.c -o 1-binary
 ```
 
-`File:` [1-binary.c](1-binary.c), [1-main.c](/mains/1-main.c)
+`File:` [1-binary.c](1-binary.c), [1-main.c](./mains/1-main.c)
 
 
 ## 2. Big O #0
@@ -78,7 +78,7 @@ Write a function that searches for a value in a sorted array of integers using t
 $ gcc -Wall -Wextra -Werror -pedantic 100-main.c 100-jump.c -lm -o 100-jump
 ```
 
-`File:` [100-jump.c](100-jump.c), [100-main.c](/mains/100-main.c)
+`File:` [100-jump.c](100-jump.c), [100-main.c](./mains/100-main.c)
 
 
 ## 8. Big O #5
@@ -94,7 +94,7 @@ Write a function that searches for a value in a sorted array of integers using t
 $ gcc -Wall -Wextra -Werror -pedantic 102-main.c 102-interpolation.c -o 102-interpolation
 ```
 
-`File:` [102-interpolation.c](102-interpolation.c), [102-main.c](/mains/102-main.c)
+`File:` [102-interpolation.c](102-interpolation.c), [102-main.c](./mains/102-main.c)
 
 
 ## 10. Exponential search
@@ -104,7 +104,7 @@ Write a function that searches for a value in a sorted array of integers using t
 $ gcc -Wall -Wextra -Werror -pedantic 103-main.c 103-exponential.c -o 103-exponential
 ```
 
-`File:` [103-exponential.c](103-exponential.c), [103-maia.c](/mains/103-main.c)
+`File:` [103-exponential.c](103-exponential.c), [103-maia.c](./mains/103-main.c)
 
 
 ## 11. Advanced binary search
@@ -114,7 +114,7 @@ Write a function that searches for a value at the lowest index in a sorted array
 $ gcc -Wall -Wextra -Werror -pedantic 104-main.c 104-advanced_binary.c -o 104-advanced_binary
 ```
 
-`File:` [104-advanced_binary.c](104-advanced_binary.c), [104-main.c](/mains/104-main.c)
+`File:` [104-advanced_binary.c](104-advanced_binary.c), [104-main.c](./mains/104-main.c)
 
 
 ## 12. Jump search in a singly linked list
@@ -144,7 +144,7 @@ typedef struct listint_s
 $ gcc -Wall -Wextra -Werror -pedantic 105-main.c 105-jump_list.c listint/*.c -lm -o 105-jump
 ```
 
-`File:` [105-jump_list.c](105-jump_list.c), [105-main.c](/mains/105-main.c)
+`File:` [105-jump_list.c](105-jump_list.c), [105-main.c](./mains/105-main.c)
 
 
 ## 13. Linear search in a skip list
@@ -176,7 +176,7 @@ typedef struct skiplist_s
 $ gcc -Wall -Wextra -Werror -pedantic 106-main.c 106-linear_skip.c skiplist/*.c -lm -o 106-linear
 ```
 
-`File:` [106-linear_skip.c](106-linear_skip.c), [106-main.c](/mains/106-main.c)
+`File:` [106-linear_skip.c](106-linear_skip.c), [106-main.c](./mains/106-main.c)
 
 
 ## 14. Big O #6
